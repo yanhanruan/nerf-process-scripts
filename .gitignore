@@ -3,6 +3,7 @@ colmap_sparse/
 colmap_text/
 images/
 transforms.json_volume_raw/
+data/
 *.mp4
 
 # Byte-compiled / optimized / DLL files

@@ -1,0 +1,1 @@
+python C:/Users/WIN/Desktop/Instant-NGP-for-RTX-3000-and-4000/scripts/colmap2nerf.py --video_in video.MOV --video_fps 2 --run_colmap --aabb_scale 16
