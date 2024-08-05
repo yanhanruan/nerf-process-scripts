@@ -4,7 +4,7 @@ import subprocess
 
 def process_videos(num_folders):
     # Generate folder names and video file names dynamically
-    folders = [f"data\\7-22\\{i}" for i in range(1, num_folders + 1)]
+    folders = [f"data\\7-25\\{i}" for i in range(1, num_folders + 1)]
     video_files = [f"C{i:04d}.MP4" for i in range(1, num_folders + 1)]
 
     # Path to the colmap2nerf.py script
@@ -30,7 +30,7 @@ def process_videos(num_folders):
     print("All videos processed successfully!")
 
 # Define the number of folders
-num_folders = 6  # Change this value as needed
+num_folders = 3  # Change this value as needed
 
 # Call the function to process the videos
 process_videos(num_folders)

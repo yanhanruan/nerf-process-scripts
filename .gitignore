@@ -5,6 +5,8 @@ images/
 transforms.json_volume_raw/
 data/
 *.mp4
+*.db
+*.ingp
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
