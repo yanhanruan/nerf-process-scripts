@@ -33,7 +33,7 @@ def process_videos(folders, video_fps=4, aabb_scale=16):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Process videos and generate transforms.json files.")
-    parser.add_argument("--folders", nargs='+', default=[f"data\\8-06\\{i}" for i in range(4, 30)], help="List of folders to process.")
+    parser.add_argument("--folders", nargs='+', default=[f"data\\8-12\\{i}" for i in range(1, 26)], help="List of folders to process.")
     parser.add_argument("--video_fps", type=int, default=4, help="Frames per second for video processing.")
     parser.add_argument("--aabb_scale", type=int, default=16, help="AABB scale for processing.")
     
