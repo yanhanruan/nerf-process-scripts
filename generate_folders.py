@@ -21,6 +21,6 @@ def create_folders(date, number):
     os.makedirs(subfolder_path, exist_ok=True)
 
 if __name__ == "__main__":
-  date = input("Enter date (mm-dd): ")
+  date = input("Enter date (m-dd): ")
   number = int(input("Enter number of subfolders: "))
   create_folders(date, number)
