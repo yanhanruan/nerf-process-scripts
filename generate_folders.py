@@ -23,4 +23,5 @@ def create_folders(date, number):
 if __name__ == "__main__":
   date = input("Enter date (m-dd): ")
   number = int(input("Enter number of subfolders: "))
+  
   create_folders(date, number)
