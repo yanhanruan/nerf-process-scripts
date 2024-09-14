@@ -31,12 +31,28 @@ def process_videos(folders, video_fps=4, aabb_scale=16):
 
     print("All videos processed successfully!")
 
+def get_subfolders(parent_folder):
+    """Retrieve subdirectories of a specified directory."""
+    try:
+        return [os.path.join(parent_folder, name) for name in os.listdir(parent_folder)
+                if os.path.isdir(os.path.join(parent_folder, name))]
+    except FileNotFoundError:
+        print(f"Error: The directory {parent_folder} does not exist.")
+        return []
+    except PermissionError:
+        print(f"Error: Permission denied to access {parent_folder}.")
+        return []
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Process videos and generate transforms.json files.")
-    parser.add_argument("--folders", nargs='+', default=[f"data\\8-12\\{i}" for i in range(26, 27)], help="List of folders to process.")
+    # parser.add_argument("--folders", nargs='+', default=[f"data\\8-26\\{i}" for i in range(1, 31)], help="List of folders to process.")
+    parser.add_argument("--folder", type=str, required = True, help="folder to process.")
     parser.add_argument("--video_fps", type=int, default=4, help="Frames per second for video processing.")
     parser.add_argument("--aabb_scale", type=int, default=16, help="AABB scale for processing.")
     
     args = parser.parse_args()
     
-    process_videos(args.folders, args.video_fps, args.aabb_scale)
+    subfolders = get_subfolders(args.folder)
+    
+    
+    process_videos(subfolders, args.video_fps, args.aabb_scale)
