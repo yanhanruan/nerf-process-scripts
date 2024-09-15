@@ -44,8 +44,8 @@ def process_obj_file(filepath):
     # Render time (simulated)
     render_time = measure_render_time(mesh)
 
-    # File size in bytes
-    file_size = os.path.getsize(filepath)
+    # File size in MB
+    file_size = os.path.getsize(filepath) / (1024 * 1024)
 
     return {
         'Filename': os.path.basename(filepath),
@@ -53,7 +53,7 @@ def process_obj_file(filepath):
         'Polygon Count': polygon_count,
         'Normals Quality': normals_quality,
         'Render Time (seconds)': render_time,
-        'File Size (bytes)': file_size
+        'File Size (MB)': file_size
     }
 
 # Function to process all OBJ files in the given folder
