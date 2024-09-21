@@ -1,6 +1,8 @@
 import os
 import subprocess
 import argparse
+import json
+import logging
 
 def process_videos(folders, video_fps=4, aabb_scale=16):
     # Path to the colmap2nerf.py script
@@ -26,10 +28,31 @@ def process_videos(folders, video_fps=4, aabb_scale=16):
             "--overwrite"
         ]
         
-        subprocess.run(command)
-        print(f"Processed {video_path}")
-
+        try:
+            subprocess.run(command, check=True)
+            print(f"Processed {video_path}")
+            modify_transform_json(output_path)
+        except subprocess.CalledProcessError as e:
+            print(f"Failed to process {video_path}: {e}")
     print("All videos processed successfully!")
+
+def modify_transform_json(file_path):
+    """Modify the file_path values in the transform.json file."""
+    try:
+        with open(file_path, 'r') as f:
+            data = json.load(f)
+        
+        for frame in data.get('frames', []):
+            if 'file_path' in frame:
+                frame['file_path'] = frame['file_path'].split('images', 1)[-1]
+                frame['file_path'] = 'images' + frame['file_path']
+        
+        with open(file_path, 'w') as f:
+            json.dump(data, f, indent=4)
+        
+        logging.info(f"Modified {file_path}")
+    except Exception as e:
+        logging.error(f"Failed to modify {file_path}: {e}")
 
 def get_subfolders(parent_folder):
     """Retrieve subdirectories of a specified directory."""
