@@ -1,78 +1,19 @@
+import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy import stats
+
+# Read the CSV file
+data = pd.read_csv('./csv/rice ear.CSV')
+
+# Convert columns to NumPy arrays
+x = np.array(data['Column1'])
+y = np.array(data['Column2'])
 
 # 解决中文乱码问题
 plt.rcParams['font.sans-serif'] = ['SimHei']  # 使用黑体
 plt.rcParams['axes.unicode_minus'] = False  # 解决坐标轴负号显示问题
 
-# 真值（实验实测株高）
-x = np.array([53.1,
-53.0,
-59.7,
-52.8,
-55.6,
-48.9,
-59.9,
-62.5,
-57.0,
-56.3,
-52.8,
-51.5,
-56.8,
-52.7,
-53.8,
-58.5,
-58.1,
-55.9,
-55.7,
-51.3,
-57.8,
-56.7,
-54.2,
-51.1,
-63.8,
-62.5,
-59.0,
-55.0,
-56.6,
-58.3,
-
-])
-
-# 模拟值（点云提取株高）
-y = np.array([53.79,
-51.52,
-58.16,
-52.20,
-56.31,
-48.19,
-59.88,
-61.62,
-57.60,
-54.73,
-51.09,
-51.10,
-55.62,
-52.94,
-53.11,
-58.31,
-58.47,
-54.32,
-54.91,
-50.72,
-58.26,
-55.17,
-54.30,
-49.72,
-62.70,
-61.56,
-57.44,
-55.62,
-55.27,
-57.40,
-
-])
 # 计算相关系数
 correlation_coefficient = np.corrcoef(x, y)[0, 1]
 
